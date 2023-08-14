@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
-import { userQueryByEmail } from "../repositories/user.repository.js";
-import { createUserDB, createSessionDB } from "../repositories/auth.repository.js";
+import { userQueryByEmail, createUserDB, createSessionDB } from "../repositories/auth.repository.js";
 
 export async function signUp(req, res) {
   const { name, email, password } = req.body;
@@ -16,6 +15,7 @@ export async function signUp(req, res) {
 
     res.sendStatus(201);
   } catch (err) {
+    console.log(err);
     return res.status(500).send(err.message);
   }
 }
